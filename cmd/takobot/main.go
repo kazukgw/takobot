@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/kazukgw/takobot/msghandler"
 	"github.com/nlopes/slack"
 )
 
@@ -40,10 +41,15 @@ Loop:
 				fmt.Println("Infos:", ev.Info)
 				fmt.Println("Connection counter:", ev.ConnectionCount)
 				// Replace #general with your Channel ID
-				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "#general"))
+				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "C0APDGNTF"))
 
 			case *slack.MessageEvent:
 				fmt.Printf("Message: %v\n", ev)
+				fmt.Println(ev.Text)
+				outgoing := msghandler.Handle(ev.Text)
+				if outgoing != "" {
+					rtm.SendMessage(rtm.NewOutgoingMessage(outgoing, "C0APDGNTF"))
+				}
 
 			case *slack.PresenceChangeEvent:
 				fmt.Printf("Presence Change: %v\n", ev)
