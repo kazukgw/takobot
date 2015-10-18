@@ -1,0 +1,9 @@
+{
+  "name": "takobot",
+  "keywords": [
+    "go"
+  ],
+  "image": "heroku/go:1.5",
+  "mount_dir": "src/github.com/kazukgw/takobot",
+  "repository": "http://github.com/kazukgw/takobot"
+}

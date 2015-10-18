@@ -1,0 +1,15 @@
+{
+	"ImportPath": "github.com/kazukgw/takobot",
+	"GoVersion": "go1.5.1",
+	"Deps": [
+		{
+			"ImportPath": "github.com/nlopes/slack",
+			"Comment": "v0.0.1-57-gaaf5585",
+			"Rev": "aaf55856f05a90dac5b934d489d6c3d14e8602a6"
+		},
+		{
+			"ImportPath": "golang.org/x/net/websocket",
+			"Rev": "610bfeebc3e0173d0645f527575409994fb733e9"
+		}
+	]
+}
