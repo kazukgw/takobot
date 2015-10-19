@@ -8,6 +8,8 @@ import (
 	"github.com/nlopes/slack"
 )
 
+var users []slack.User
+
 func HandleEvent() {
 	tkn := os.Getenv("SLACK_BOT_TOKEN")
 	api := slack.New(tkn)
@@ -29,7 +31,9 @@ Loop:
 				fmt.Println("Infos:", ev.Info)
 				fmt.Println("Connection counter:", ev.ConnectionCount)
 				// Replace #general with your Channel ID
-				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "C0APDGNTF"))
+				users, _ = api.GetUsers()
+				// fmt.Println("users: %#v", users)
+				rtm.SendMessage(rtm.NewOutgoingMessage("あーえー天気やわ", "C0APDGNTF"))
 
 			case *slack.MessageEvent:
 				fmt.Printf("Message: %v\n", ev)
