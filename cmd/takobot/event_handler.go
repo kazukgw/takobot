@@ -1,5 +1,13 @@
 package main
 
+import (
+	"fmt"
+	"os"
+
+	"github.com/kazukgw/takobot/msghandler"
+	"github.com/nlopes/slack"
+)
+
 func HandleEvent() {
 	tkn := os.Getenv("SLACK_BOT_TOKEN")
 	api := slack.New(tkn)

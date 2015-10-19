@@ -1,6 +1,9 @@
 {
 	"ImportPath": "github.com/kazukgw/takobot",
 	"GoVersion": "go1.5.1",
+	"Packages": [
+		"./cmd/takobot/"
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/nlopes/slack",
@@ -10,6 +13,11 @@
 		{
 			"ImportPath": "golang.org/x/net/websocket",
 			"Rev": "610bfeebc3e0173d0645f527575409994fb733e9"
+		},
+		{
+			"ImportPath": "gopkg.in/robfig/cron.v2",
+			"Comment": "v1-11-gbe2e0b0",
+			"Rev": "be2e0b0deed5a68ffee390b4583a13aff8321535"
 		}
 	]
 }
