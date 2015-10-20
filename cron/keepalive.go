@@ -1,7 +1,7 @@
 package cron
 
 import (
-	"gopkg.in/robfig/cron.v2"
+	"github.com/kazukgw/takobot/Godeps/_workspace/src/gopkg.in/robfig/cron.v2"
 	"net/http"
 )
 

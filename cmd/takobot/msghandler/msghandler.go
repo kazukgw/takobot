@@ -1,25 +1,52 @@
 package msghandler
 
 import (
-	"math/rand"
 	"regexp"
-	"strings"
-	"time"
+
+	ags "github.com/kazukgw/takobot/cmd/takobot/actiongroups"
+	act "github.com/kazukgw/takobot/cmd/takobot/actions"
+	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
+	"github.com/kazukgw/takobot/cmd/takobot/db"
+	"github.com/kazukgw/takobot/cmd/takobot/msg"
+
+	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
+	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/nlopes/slack"
 )
 
-func AddHandler(pattern string) bool {
-	return true
+func HandleMsg(rtm *slack.RTM, ev *slack.MessageEvent) {
+	msg := msg.NewMsg(ev)
+	mctx := ctxs.NewMsgContext(Routing{}, msg, rtm)
+	mctx.Exec()
 }
 
-func Handle(msg string) string {
-	msgs := strings.Split(msg, ":")
-	if len(msgs) > 1 {
-		return patternMatch(msgs[1])
+type Routing struct {
+	db.NewDB
+	act.GetAndSaveMsg
+	coa.DoSelf
+	db.CloseDB
+}
+
+func (ag *Routing) Do(ctx coa.Context) error {
+	mctx := ctx.(*ctxs.MsgContext)
+	msg := ag.GetMsg()
+	for ptn, agSource := range commandPatterns {
+		if ptn.Match([]byte(msg.Text)) {
+			newMctx := ctxs.NewMsgContext(agSource, msg, mctx.RTM)
+			return newMctx.Exec()
+		}
 	}
-	return ""
+	newMctx := ctxs.NewMsgContext(ags.SendRegisteredMsg{}, msg, mctx.RTM)
+	return newMctx.Exec()
 }
 
-var mapPattern = map[string][]string{
+var commandPatterns = map[*regexp.Regexp]interface{}{
+	regexp.MustCompile("pattern[ ]+add:.*"): ags.AddPattern{},
+	regexp.MustCompile("pattern[ ]+ls:.*"):  ags.ShowPattern{},
+	regexp.MustCompile("pattern[ ]+rm:.*"):  ags.RemovePattern{},
+}
+
+/*
+var msgPtternMap = map[string][]string{
 	"つかれ(た|や)":              {"おつかれさん"},
 	"名前は":                   {"takobotやで", "しっとるやろ"},
 	"つらい":                   {"なにがあったんや", "はなし、きくで"},
@@ -40,21 +67,4 @@ var mapPattern = map[string][]string{
 	"(たこぼっと[^さ]+)|(たこぼっと$)": {"さん をつけろよこのでこすけやろう"},
 	"(タコボット[^さ]+)|(タコボット$)": {"さん をつけろよこのでこすけやろう"},
 }
-
-func patternMatch(msg string) string {
-	var msgs []string
-	for k, ms := range mapPattern {
-		regex := regexp.MustCompile(k)
-		if regex.Match([]byte(msg)) {
-			msgs = ms
-			break
-		}
-	}
-
-	if len(msgs) == 0 {
-		msgs = []string{"わからんわ"}
-	}
-
-	rand.Seed(time.Now().UnixNano())
-	return msgs[rand.Intn(len(msgs))]
-}
+*/

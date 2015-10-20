@@ -2,13 +2,30 @@
 	"ImportPath": "github.com/kazukgw/takobot",
 	"GoVersion": "go1.5.1",
 	"Packages": [
-		"./cmd/takobot/"
+		"./..."
 	],
 	"Deps": [
+		{
+			"ImportPath": "github.com/jinzhu/gorm",
+			"Rev": "484fb30089d23d2d3f0ec538200f5ce4bd44f856"
+		},
+		{
+			"ImportPath": "github.com/kazukgw/coa",
+			"Rev": "531a544d3fa66590d057f71c6e0ee8f2624ab92a"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Comment": "go1.0-cutoff-47-g93e9980",
+			"Rev": "93e9980741c9e593411b94e07d5bad8cfb4809db"
+		},
 		{
 			"ImportPath": "github.com/nlopes/slack",
 			"Comment": "v0.0.1-57-gaaf5585",
 			"Rev": "aaf55856f05a90dac5b934d489d6c3d14e8602a6"
+		},
+		{
+			"ImportPath": "github.com/qor/inflection",
+			"Rev": "3272df6c21d04180007eb3349844c89a3856bc25"
 		},
 		{
 			"ImportPath": "golang.org/x/net/websocket",
