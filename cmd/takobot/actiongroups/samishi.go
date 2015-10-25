@@ -19,7 +19,7 @@ type Samishi struct {
 	db.CloseDB
 }
 
-func (ag *Samishi) Schedule() string {
+func (ag Samishi) Schedule() string {
 	return "TZ=Asia/Tokyo 0 15 11-19 * * *"
 }
 

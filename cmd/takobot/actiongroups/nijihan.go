@@ -14,7 +14,7 @@ type Nijihan struct {
 	db.CloseDB
 }
 
-func (ag *Nijihan) Schedule() string {
+func (ag Nijihan) Schedule() string {
 	return "TZ=Asia/Tokyo 0 30 14 * * *"
 }
 

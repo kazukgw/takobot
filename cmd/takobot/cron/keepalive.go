@@ -12,7 +12,7 @@ type KeepAlive struct {
 	DefaultErrorHandler
 }
 
-func (ag *KeepAlive) Schedule() string {
+func (ag KeepAlive) Schedule() string {
 	return "@every 5m"
 }
 
