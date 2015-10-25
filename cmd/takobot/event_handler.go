@@ -6,6 +6,7 @@ import (
 
 	act "github.com/kazukgw/takobot/cmd/takobot/actions"
 	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
+	"github.com/kazukgw/takobot/cmd/takobot/cron"
 	mh "github.com/kazukgw/takobot/cmd/takobot/msghandler"
 	"github.com/kazukgw/takobot/cmd/takobot/store"
 
@@ -16,11 +17,11 @@ func HandleEvent() {
 	tkn := os.Getenv("SLACK_BOT_TOKEN")
 	api := slack.New(tkn)
 	// api.SetDebug(true)
+	ctxs.NewContext(&act.LoadPattern{}).Exec()
 
 	rtm := api.NewRTM()
 	go rtm.ManageConnection()
-
-	ctxs.NewContext(&act.LoadPattern{}).Exec()
+	go cron.Init(rtm)
 
 Loop:
 	for {

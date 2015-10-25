@@ -1,9 +1,10 @@
 package actions
 
 import (
-	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
 	"github.com/kazukgw/takobot/cmd/takobot/db"
 	"github.com/kazukgw/takobot/cmd/takobot/msg"
+
+	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
 )
 
 type SaveMsg struct {
