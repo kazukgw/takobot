@@ -39,3 +39,8 @@ func (ag *Samishi) Do(ctx coa.Context) error {
 	}
 	return nil
 }
+
+func (ag *Samishi) HandleError(ctx coa.Context, err error) error {
+	fmt.Println(err.Error())
+	return err
+}

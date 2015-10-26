@@ -23,3 +23,8 @@ func (ag *Nijihan) Do(ctx coa.Context) error {
 	ag.SendMsg.Channel = "general"
 	return nil
 }
+
+func (ag *Nijihan) HandleError(ctx coa.Context) error {
+	fmt.Println(err.Error())
+	return err
+}
