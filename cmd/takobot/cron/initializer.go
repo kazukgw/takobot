@@ -22,6 +22,7 @@ type HasSchedule interface {
 
 func Init(rtm *slack.RTM) {
 	for _, agSource := range crons {
+		fmt.Println("--------------------------")
 		c := cron.New()
 		s := agSource.(HasSchedule).Schedule()
 		if s != "" {
