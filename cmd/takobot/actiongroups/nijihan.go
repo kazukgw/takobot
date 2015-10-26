@@ -17,10 +17,11 @@ type Nijihan struct {
 }
 
 func (ag Nijihan) Schedule() string {
-	return "0 55 12 * * *"
+	return "0 0 13 * * *"
 }
 
 func (ag *Nijihan) Do(ctx coa.Context) error {
+	fmt.Println("do action group: Nijihan")
 	ag.SendMsg.Msg = "ニジ・ハーン"
 	ag.SendMsg.Channel = "general"
 	return nil
