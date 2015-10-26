@@ -27,6 +27,7 @@ func Init(rtm *slack.RTM) {
 		if s != "" {
 			fmt.Printf("register action: %#v s:%#v", agSource, s)
 			c.AddFunc(s, func() {
+				fmt.Println("do the cron action group -------------- ")
 				ctxs.NewMsgContext(agSource, nil, rtm).Exec()
 			})
 		}
