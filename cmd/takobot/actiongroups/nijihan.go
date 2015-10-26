@@ -17,7 +17,7 @@ type Nijihan struct {
 }
 
 func (ag Nijihan) Schedule() string {
-	return "0 12 13 * * *"
+	return "0 15 13 * * *"
 }
 
 func (ag *Nijihan) Do(ctx coa.Context) error {
