@@ -1,6 +1,8 @@
 package cron
 
 import (
+	"fmt"
+
 	ags "github.com/kazukgw/takobot/cmd/takobot/actiongroups"
 	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
 
@@ -19,12 +21,13 @@ type HasSchedule interface {
 }
 
 func Init(rtm *slack.RTM) {
-	for _, action := range crons {
+	for _, agSource := range crons {
 		c := cron.New()
-		s := action.(HasSchedule).Schedule()
+		s := agSource.(HasSchedule).Schedule()
 		if s != "" {
+			fmt.Printf("register action: %#v s:%#v", agSource, s)
 			c.AddFunc(s, func() {
-				ctxs.NewMsgContext(action, nil, rtm).Exec()
+				ctxs.NewMsgContext(agSource, nil, rtm).Exec()
 			})
 		}
 	}
