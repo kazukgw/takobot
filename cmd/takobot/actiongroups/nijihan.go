@@ -17,7 +17,7 @@ type Nijihan struct {
 }
 
 func (ag Nijihan) Schedule() string {
-	return "TZ=Asia/Tokyo 0 30 14 * * *"
+	return "TZ=Asia/Tokyo 0 45 14 * * *"
 }
 
 func (ag *Nijihan) Do(ctx coa.Context) error {
