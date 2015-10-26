@@ -21,7 +21,7 @@ type Samishi struct {
 }
 
 func (ag Samishi) Schedule() string {
-	return "0 40 02-13 * * *"
+	return "0 45 02-13 * * *"
 }
 
 func (ag *Samishi) PreExec(ctx coa.Context) error {
