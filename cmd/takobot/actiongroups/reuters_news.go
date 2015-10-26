@@ -1,12 +1,10 @@
 package actiongroups
 
 import (
-	act "github.com/kazukgw/takobot/cmd/takobot/actions"
-	"github.com/kazukgw/takobot/cmd/takobot/db"
-	eh "github.com/kazukgw/takobot/cmd/takobot/errorhandler"
-	"github.com/kazukgw/takobot/cmd/takobot/models"
+	"fmt"
 
-	gq "github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/PuerkitoBio/goquery"
+	act "github.com/kazukgw/takobot/cmd/takobot/actions"
+
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/nlopes/slack"
 )
@@ -14,11 +12,13 @@ import (
 type ReutersNews struct {
 	act.Scrape
 	coa.DoSelf
-	act.SendMsg
+	act.GetClient
+	act.SendAttachments
 }
 
 func (ag ReutersNews) Schedule() string {
-	return "0 15 03,07,11,23 * * *"
+	// return "0 15 03,07,11,23 * * *"
+	return "@every 1m"
 }
 
 func (ag *ReutersNews) PreExec(ctx coa.Context) error {
@@ -26,16 +26,21 @@ func (ag *ReutersNews) PreExec(ctx coa.Context) error {
 	return nil
 }
 
-func (ag *SendRegisteredMsg) Do(ctx coa.Context) error {
-	text := ag.Document.Find(".column1 .columnLeft").Eq(0).Find("h2").Text()
-	// $(".column1 .columnLeft").eq(0).find("h2 a").prop("href")
-
-	ag.SendMsgWithPattern.Patterns = models.CompiledPatterns
-	ag.SendMsgWithPattern.Source = ag.GetMsgFromCtx.Msg.Text
+func (ag *ReutersNews) Do(ctx coa.Context) error {
+	feature := ag.Document.Find(".column1 .columnLeft").Eq(0).Find("feature")
+	title := feature.Find("h2").Text()
+	text := feature.Find("p").Text()
+	href, _ := feature.Find("h2 a").Attr("href")
+	ag.SendAttachments.Attachment = slack.Attachment{
+		Pretext:   "ニュース持ってきたやで〜",
+		Title:     title,
+		TitleLink: href,
+		Text:      text,
+	}
 	return nil
 }
 
-func (ag *Nijihan) HandleError(ctx coa.Context, err error) error {
+func (ag *ReutersNews) HandleError(ctx coa.Context, err error) error {
 	fmt.Println(err.Error())
 	return err
 }

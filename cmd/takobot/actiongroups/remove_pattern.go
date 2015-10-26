@@ -19,7 +19,7 @@ type RemovePattern struct {
 	act.GetMsgFromCtx
 	act.Filtering
 	coa.DoSelf
-	act.SendMsg
+	act.GetRTMAndSendMsg
 	db.CloseDB
 }
 

@@ -15,6 +15,7 @@ var crons = []interface{}{
 	KeepAlive{},
 	ags.Nijihan{},
 	ags.Samishi{},
+	ags.ReutersNews{},
 }
 
 type HasSchedule interface {
@@ -33,7 +34,7 @@ func Init(rtm *slack.RTM, client *slack.Client) {
 					reflect.TypeOf(_agSource).Name(),
 					s,
 				)
-				ctxs.NewMsgContext(_agSource, nil, rtm).Exec()
+				ctxs.NewMsgContext(_agSource, nil, rtm, client).Exec()
 			})
 		}
 	}

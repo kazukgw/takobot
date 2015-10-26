@@ -12,7 +12,7 @@ import (
 type Nijihan struct {
 	db.NewDB
 	coa.DoSelf
-	act.SendMsg
+	act.GetRTMAndSendMsg
 	db.CloseDB
 }
 

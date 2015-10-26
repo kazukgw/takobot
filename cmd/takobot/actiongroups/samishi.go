@@ -16,7 +16,7 @@ type Samishi struct {
 	db.NewDB
 	act.MsgHistory
 	coa.DoSelf
-	act.SendMsg
+	act.GetRTMAndSendMsg
 	db.CloseDB
 }
 

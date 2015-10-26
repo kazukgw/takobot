@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	act "github.com/kazukgw/takobot/cmd/takobot/actions"
+	ags "github.com/kazukgw/takobot/cmd/takobot/actiongroups"
 	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
 	"github.com/kazukgw/takobot/cmd/takobot/cron"
 	mh "github.com/kazukgw/takobot/cmd/takobot/msghandler"
@@ -17,7 +17,7 @@ func HandleEvent() {
 	tkn := os.Getenv("SLACK_BOT_TOKEN")
 	api := slack.New(tkn)
 	// api.SetDebug(true)
-	ctxs.NewContext(&act.LoadPattern{}).Exec()
+	ctxs.NewContext(&ags.LoadPattern{}).Exec()
 
 	rtm := api.NewRTM()
 	go rtm.ManageConnection()
@@ -46,7 +46,7 @@ Loop:
 
 			case *slack.MessageEvent:
 				fmt.Printf("Message: %v\n", ev)
-				go mh.HandleMsg(rtm, ev)
+				go mh.HandleMsg(ev, rtm, api)
 
 			case *slack.PresenceChangeEvent:
 				fmt.Printf("Presence Change: %v\n", ev)

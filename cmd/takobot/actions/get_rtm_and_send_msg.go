@@ -6,17 +6,13 @@ import (
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
 )
 
-type SendMsgWithPattern struct {
+type GetRTMAndSendMsg struct {
 	GetRTM
-	MsgWithPattern
-	coa.DoSelf
 	SendMsg
 
 	eh.DoNothing
 }
 
-func (ag *SendMsgWithPattern) Do(ctx coa.Context) error {
-	ag.SendMsg.Msg = ag.MsgWithPattern.ResultMsg
-	ag.SendMsg.Channel = "general"
+func (ag *GetRTMAndSendMsg) Do(ctx coa.Context) error {
 	return nil
 }

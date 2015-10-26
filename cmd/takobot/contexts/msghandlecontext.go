@@ -13,12 +13,18 @@ type MsgContext struct {
 	actionGroup coa.ActionGroup
 	*msg.Msg
 	*slack.RTM
+	*slack.Client
 }
 
-func NewMsgContext(agSource interface{}, m *msg.Msg, rtm *slack.RTM) *MsgContext {
+func NewMsgContext(
+	agSource interface{},
+	m *msg.Msg,
+	rtm *slack.RTM,
+	client *slack.Client,
+) *MsgContext {
 	agType := reflect.TypeOf(agSource)
 	if ag, ok := reflect.New(agType).Interface().(coa.ActionGroup); ok {
-		return &MsgContext{ag, m, rtm}
+		return &MsgContext{ag, m, rtm, client}
 	}
 	return nil
 }

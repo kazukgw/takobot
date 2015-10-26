@@ -15,7 +15,6 @@ type MsgWithPattern struct {
 }
 
 func (a *MsgWithPattern) Do(ctx coa.Context) error {
-	// mctx := ctx.(*msghandler.MsgContext)
 	msgs := make([]string, 0)
 	for re, ms := range a.Patterns {
 		if re.Match([]byte(a.Source)) {

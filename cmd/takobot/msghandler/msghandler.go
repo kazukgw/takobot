@@ -13,9 +13,13 @@ import (
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/nlopes/slack"
 )
 
-func HandleMsg(rtm *slack.RTM, ev *slack.MessageEvent) {
+func HandleMsg(
+	ev *slack.MessageEvent,
+	rtm *slack.RTM,
+	client *slack.Client,
+) {
 	msg := msg.NewMsg(ev)
-	mctx := ctxs.NewMsgContext(Routing{}, msg, rtm)
+	mctx := ctxs.NewMsgContext(Routing{}, msg, rtm, client)
 	mctx.Exec()
 }
 
@@ -31,11 +35,11 @@ func (ag *Routing) Do(ctx coa.Context) error {
 	msg := ag.GetMsg()
 	for ptn, agSource := range commandPatterns {
 		if ptn.Match([]byte(msg.Text)) {
-			newMctx := ctxs.NewMsgContext(agSource, msg, mctx.RTM)
+			newMctx := ctxs.NewMsgContext(agSource, msg, mctx.RTM, mctx.Client)
 			return newMctx.Exec()
 		}
 	}
-	newMctx := ctxs.NewMsgContext(ags.SendRegisteredMsg{}, msg, mctx.RTM)
+	newMctx := ctxs.NewMsgContext(ags.SendRegisteredMsg{}, msg, mctx.RTM, mctx.Client)
 	return newMctx.Exec()
 }
 
