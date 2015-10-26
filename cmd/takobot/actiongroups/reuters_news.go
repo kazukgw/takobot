@@ -17,8 +17,8 @@ type ReutersNews struct {
 }
 
 func (ag ReutersNews) Schedule() string {
-	// return "0 15 03,07,11,23 * * *"
-	return "@every 1m"
+	return "0 15 03,07,11,23 * * *"
+	// return "@every 1m"
 }
 
 func (ag *ReutersNews) PreExec(ctx coa.Context) error {
