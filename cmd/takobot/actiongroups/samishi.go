@@ -21,13 +21,13 @@ type Samishi struct {
 }
 
 func (ag Samishi) Schedule() string {
-	return "0 15 02-10 * * *"
+	return "0 35 02-13 * * *"
 }
 
 func (ag *Samishi) PreExec(ctx coa.Context) error {
 	ag.MsgHistory.LastMinutes = 90
 	ag.MsgHistory.Scope = func(db *gorm.DB) *gorm.DB {
-		return db.Where("`from` != ?", store.UserByName("takobot").ID)
+		return db.Where("`from_user` != ?", store.UserByName("takobot").ID)
 	}
 	return nil
 }
