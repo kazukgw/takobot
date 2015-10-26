@@ -33,7 +33,7 @@ Loop:
 				// Ignore hello
 
 			case *slack.ConnectedEvent:
-				fmt.Println("Infos:", ev.Info)
+				// fmt.Println("Infos:", ev.Info)
 				users, _ := api.GetUsers()
 				store.MakeUserMap(users)
 				channels, _ := api.GetChannels(true)
