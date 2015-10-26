@@ -26,8 +26,7 @@ func Init(rtm *slack.RTM) {
 	for _, agSource := range crons {
 		s := agSource.(HasSchedule).Schedule()
 		if s != "" {
-			_agSource = agSource
-			fmt.Printf("register action: %#v s:%#v", _agSource, s)
+			_agSource := agSource
 			c.AddFunc(s, func() {
 				fmt.Printf(
 					"do the cron action group: %#v s: %#v",
