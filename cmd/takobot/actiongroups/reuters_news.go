@@ -35,7 +35,7 @@ func (ag *ReutersNews) Do(ctx coa.Context) error {
 	ag.SendAttachments.Attachment = slack.Attachment{
 		Pretext:   "ニュース持ってきたやで〜",
 		Title:     title,
-		TitleLink: href,
+		TitleLink: "http://jp.reuters.com/news" + href,
 		Text:      text,
 	}
 	return nil
