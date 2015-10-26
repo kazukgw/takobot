@@ -2,6 +2,7 @@ package cron
 
 import (
 	"fmt"
+	"reflect"
 
 	ags "github.com/kazukgw/takobot/cmd/takobot/actiongroups"
 	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
@@ -27,7 +28,10 @@ func Init(rtm *slack.RTM) {
 		if s != "" {
 			fmt.Printf("register action: %#v s:%#v", agSource, s)
 			c.AddFunc(s, func() {
-				fmt.Println("do the cron action group -------------- ")
+				fmt.Printf(
+					"do the cron action group : %#v",
+					refect.TypeOf(agSource).Name(),
+				)
 				ctxs.NewMsgContext(agSource, nil, rtm).Exec()
 			})
 		}
