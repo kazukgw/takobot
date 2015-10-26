@@ -6,8 +6,8 @@ import (
 
 type Msg struct {
 	gorm.Model
-	From     string `sql:"index;not null"`
-	To       string `sql:"index"`
+	FromUser string `sql:"index;not null"`
+	ToUser   string `sql:"index"`
 	Channel  string `sql:"index;not null"`
 	FullBody string `sql:"size:1000"`
 }

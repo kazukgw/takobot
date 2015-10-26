@@ -33,12 +33,12 @@ func NewMsg(ev *slack.MessageEvent) *Msg {
 
 func (msg *Msg) ModelsMsg() *models.Msg {
 	tmsg := &models.Msg{
-		From:     msg.User,
+		FromUser: msg.User,
 		Channel:  msg.Channel,
 		FullBody: msg.Text,
 	}
 	if msg.ToUser != nil {
-		tmsg.To = msg.ToUser.ID
+		tmsg.ToUser = msg.ToUser.ID
 	}
 	return tmsg
 }
