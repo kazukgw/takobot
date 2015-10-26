@@ -26,7 +26,7 @@ func (ag *Nijihan) Do(ctx coa.Context) error {
 	return nil
 }
 
-func (ag *Nijihan) HandleError(ctx coa.Context) error {
+func (ag *Nijihan) HandleError(ctx coa.Context, err error) error {
 	fmt.Println(err.Error())
 	return err
 }
