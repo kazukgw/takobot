@@ -1,6 +1,7 @@
 package actiongroups
 
 import (
+	"fmt"
 	"math/rand"
 
 	act "github.com/kazukgw/takobot/cmd/takobot/actions"
