@@ -11,6 +11,10 @@
 			"Rev": "417cce822c7b9a379df5824be95228d177c5698b"
 		},
 		{
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48"
+		},
+		{
 			"ImportPath": "github.com/jinzhu/gorm",
 			"Rev": "484fb30089d23d2d3f0ec538200f5ce4bd44f856"
 		},
@@ -31,6 +35,10 @@
 		{
 			"ImportPath": "github.com/qor/inflection",
 			"Rev": "3272df6c21d04180007eb3349844c89a3856bc25"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "610bfeebc3e0173d0645f527575409994fb733e9"
 		},
 		{
 			"ImportPath": "golang.org/x/net/websocket",

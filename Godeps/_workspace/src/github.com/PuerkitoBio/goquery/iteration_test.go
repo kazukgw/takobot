@@ -3,7 +3,7 @@ package goquery
 import (
 	"testing"
 
-	"golang.org/x/net/html"
+	"github.com/kazukgw/takobot/Godeps/_workspace/src/golang.org/x/net/html"
 )
 
 func TestEach(t *testing.T) {

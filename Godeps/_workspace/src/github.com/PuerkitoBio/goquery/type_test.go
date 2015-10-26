@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"golang.org/x/net/html"
+	"github.com/kazukgw/takobot/Godeps/_workspace/src/golang.org/x/net/html"
 )
 
 // Test helper functions and members
