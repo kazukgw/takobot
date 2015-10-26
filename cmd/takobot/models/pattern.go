@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"regexp"
 
-	"github.com/jinzhu/gorm"
+	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/jinzhu/gorm"
 )
 
 type Pattern struct {

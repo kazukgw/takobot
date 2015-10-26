@@ -21,7 +21,7 @@ func HandleEvent() {
 
 	rtm := api.NewRTM()
 	go rtm.ManageConnection()
-	go cron.Init(rtm)
+	go cron.Init(rtm, api)
 
 Loop:
 	for {

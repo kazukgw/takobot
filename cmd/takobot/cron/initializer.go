@@ -21,7 +21,7 @@ type HasSchedule interface {
 	Schedule() string
 }
 
-func Init(rtm *slack.RTM) {
+func Init(rtm *slack.RTM, client *slack.Client) {
 	c := cron.New()
 	for _, agSource := range crons {
 		s := agSource.(HasSchedule).Schedule()

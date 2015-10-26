@@ -6,6 +6,11 @@
 	],
 	"Deps": [
 		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v0.3.2-80-g417cce8",
+			"Rev": "417cce822c7b9a379df5824be95228d177c5698b"
+		},
+		{
 			"ImportPath": "github.com/jinzhu/gorm",
 			"Rev": "484fb30089d23d2d3f0ec538200f5ce4bd44f856"
 		},
