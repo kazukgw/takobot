@@ -17,6 +17,7 @@ func (a *SendAttachments) Do(ctx coa.Context) error {
 	params := slack.PostMessageParameters{}
 	params.Attachments = []slack.Attachment{a.Attachment}
 	params.Username = "takobot"
+	params.IconURL = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT4Nm9GTh-1aTRmNMdkkAYoCMFHALSj560lxbHA7nYSYjBcptH0JA"
 	chanID := store.ChanByName("general").ID
 	_, _, err := client.PostMessage(chanID, "", params)
 	if err != nil {
