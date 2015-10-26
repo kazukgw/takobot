@@ -27,10 +27,11 @@ func (ag *ReutersNews) PreExec(ctx coa.Context) error {
 }
 
 func (ag *ReutersNews) Do(ctx coa.Context) error {
-	feature := ag.Document.Find(".column1 .columnLeft").Eq(0).Find("feature")
+	feature := ag.Document.Find(".column1 .columnLeft").Eq(0).Find(".feature")
 	title := feature.Find("h2").Text()
 	text := feature.Find("p").Text()
 	href, _ := feature.Find("h2 a").Attr("href")
+	fmt.Printf("title: %v\ntext: %v\nhref: %v\n", title, text, href)
 	ag.SendAttachments.Attachment = slack.Attachment{
 		Pretext:   "ニュース持ってきたやで〜",
 		Title:     title,
