@@ -26,7 +26,7 @@ type ShowPattern struct {
 }
 
 func (ag *ShowPattern) PreExec(ctx coa.Context) error {
-	ag.Filtering.ToWhiteUser = []string{"takobot"}
+	ag.Filtering.ToPermitUser = []string{"takobot"}
 	return nil
 }
 

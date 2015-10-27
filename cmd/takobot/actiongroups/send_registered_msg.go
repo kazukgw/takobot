@@ -21,7 +21,7 @@ type SendRegisteredMsg struct {
 }
 
 func (ag *SendRegisteredMsg) PreExec(ctx coa.Context) error {
-	ag.Filtering.ToWhiteUser = []string{"takobot"}
+	ag.Filtering.ToPermitUser = []string{"takobot"}
 	return nil
 }
 

@@ -1,7 +1,6 @@
 package actions
 
 import (
-	"fmt"
 	"math/rand"
 
 	eh "github.com/kazukgw/takobot/cmd/takobot/errorhandler"

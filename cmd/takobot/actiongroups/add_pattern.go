@@ -52,7 +52,7 @@ func getAddPatternArgs(source string) []string {
 }
 
 func (ag *AddPattern) PreExec(ctx coa.Context) error {
-	ag.Filtering.ToWhiteUser = []string{"takobot"}
+	ag.Filtering.ToPermitUser = []string{"takobot"}
 	return nil
 }
 

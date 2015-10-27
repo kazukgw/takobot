@@ -1,8 +1,6 @@
 package actions
 
 import (
-	"fmt"
-
 	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
 	"github.com/kazukgw/takobot/cmd/takobot/log"
 

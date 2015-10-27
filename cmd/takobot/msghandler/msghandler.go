@@ -37,7 +37,7 @@ func (ag *Routing) Do(ctx coa.Context) error {
 	msg := ag.GetMsg()
 	for ptn, agSource := range commandPatterns {
 		if ptn.Match([]byte(msg.Text)) {
-			log.ActionGRP(reflect.TypeOf(agSouce), " ==>")
+			log.ActionGRP(reflect.TypeOf(agSource), " ==>")
 			newMctx := ctxs.NewMsgContext(agSource, msg, mctx.RTM, mctx.Client)
 			return newMctx.Exec()
 		}
