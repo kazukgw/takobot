@@ -15,7 +15,7 @@ type SendMsg struct {
 }
 
 func (a *SendMsg) Do(ctx coa.Context) error {
-	log.Action("send msg ==>")
+	log.Action("==> send msg")
 	rtm := ctx.ActionGroup().(HasRTM).RTM()
 	fmt.Printf("send msg to channel: %v msg: %v\n", a.Channel, a.Msg)
 	rtm.SendMessage(rtm.NewOutgoingMessage(a.Msg, store.ChanByName(a.Channel).ID))

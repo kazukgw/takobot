@@ -23,7 +23,7 @@ type Filtering struct {
 }
 
 func (a *Filtering) Do(ctx coa.Context) error {
-	log.Action("filtering ==>")
+	log.Action("==> filtering")
 	if ag, ok := ctx.ActionGroup().(HasMsg); ok {
 		m := ag.GetMsg()
 		chanName := store.ChanByID(m.Channel).Name

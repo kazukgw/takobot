@@ -15,6 +15,6 @@ type GetRTMAndSendMsg struct {
 }
 
 func (ag *GetRTMAndSendMsg) Do(ctx coa.Context) error {
-	log.Action("get rtm and send msg ==>")
+	log.Action("==> get rtm and send msg")
 	return nil
 }

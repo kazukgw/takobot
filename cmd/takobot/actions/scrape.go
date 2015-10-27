@@ -13,7 +13,7 @@ type Scrape struct {
 }
 
 func (a *Scrape) Do(ctx coa.Context) error {
-	log.Action("scrape ==>")
+	log.Action("==> scrape")
 	doc, err := gq.NewDocument(a.URL)
 	if err != nil {
 		return err

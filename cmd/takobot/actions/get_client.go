@@ -17,9 +17,9 @@ type HasClient interface {
 }
 
 func (a *GetClient) Do(ctx coa.Context) error {
+	log.Action("==> get client")
 	mctx := ctx.(*ctxs.MsgContext)
 	a.client = mctx.Client
-	log.Action("get client ==>")
 	return nil
 }
 

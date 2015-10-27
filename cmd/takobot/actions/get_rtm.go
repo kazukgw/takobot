@@ -17,7 +17,7 @@ type HasRTM interface {
 }
 
 func (a *GetRTM) Do(ctx coa.Context) error {
-	log.Action("get rtm ==>")
+	log.Action("==> get rtm")
 	mctx := ctx.(*ctxs.MsgContext)
 	a.rtm = mctx.RTM
 	return nil

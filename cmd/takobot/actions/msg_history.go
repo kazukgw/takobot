@@ -19,7 +19,7 @@ type MsgHistory struct {
 }
 
 func (a *MsgHistory) Do(ctx coa.Context) error {
-	log.Action("msg history ==>")
+	log.Action("==> msg history")
 	ag := ctx.ActionGroup()
 	db := ag.(db.HasDB).DB()
 	if a.Scope != nil {

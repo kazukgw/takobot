@@ -14,7 +14,7 @@ type SendAttachments struct {
 }
 
 func (a *SendAttachments) Do(ctx coa.Context) error {
-	log.Action("send attachments ==>")
+	log.Action("==> send attachments")
 	client := ctx.ActionGroup().(HasClient).Client()
 	params := slack.PostMessageParameters{}
 	params.Attachments = []slack.Attachment{a.Attachment}

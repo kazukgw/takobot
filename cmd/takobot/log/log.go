@@ -17,7 +17,7 @@ func ActionGRP(v ...interface{}) {
 }
 
 func Action(v ...interface{}) {
-	args := []interface{}{"    [ACTION] "}
+	args := []interface{}{"[ACTION] "}
 	args = append(args, v...)
 	fmt.Println(args...)
 }

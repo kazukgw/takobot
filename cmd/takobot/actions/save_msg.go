@@ -13,7 +13,7 @@ type SaveMsg struct {
 }
 
 func (a *SaveMsg) Do(ctx coa.Context) error {
-	log.Action("save msg ==>")
+	log.Action("==> save msg")
 	if a.Msg == nil {
 		return nil
 	}

@@ -17,7 +17,7 @@ type HasMsg interface {
 }
 
 func (a *GetMsgFromCtx) Do(ctx coa.Context) error {
-	log.Action("get msg from context ==>")
+	log.Action("==> get msg from context")
 	mctx := ctx.(*ctxs.MsgContext)
 	a.Msg = mctx.Msg
 	return nil
