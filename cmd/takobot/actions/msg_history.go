@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/kazukgw/takobot/cmd/takobot/db"
+	"github.com/kazukgw/takobot/cmd/takobot/log"
 	"github.com/kazukgw/takobot/cmd/takobot/models"
 
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/jinzhu/gorm"
@@ -18,6 +19,7 @@ type MsgHistory struct {
 }
 
 func (a *MsgHistory) Do(ctx coa.Context) error {
+	log.Action("msg history ==>")
 	ag := ctx.ActionGroup()
 	db := ag.(db.HasDB).DB()
 	if a.Scope != nil {

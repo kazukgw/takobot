@@ -1,6 +1,7 @@
 package actions
 
 import (
+	"github.com/kazukgw/takobot/cmd/takobot/log"
 	"github.com/kazukgw/takobot/cmd/takobot/store"
 
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
@@ -13,6 +14,7 @@ type SendAttachments struct {
 }
 
 func (a *SendAttachments) Do(ctx coa.Context) error {
+	log.Action("send attachments ==>")
 	client := ctx.ActionGroup().(HasClient).Client()
 	params := slack.PostMessageParameters{}
 	params.Attachments = []slack.Attachment{a.Attachment}

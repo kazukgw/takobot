@@ -2,6 +2,7 @@ package actions
 
 import (
 	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
+	"github.com/kazukgw/takobot/cmd/takobot/log"
 	"github.com/kazukgw/takobot/cmd/takobot/msg"
 
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
@@ -16,6 +17,7 @@ type HasMsg interface {
 }
 
 func (a *GetMsgFromCtx) Do(ctx coa.Context) error {
+	log.Action("get msg from context ==>")
 	mctx := ctx.(*ctxs.MsgContext)
 	a.Msg = mctx.Msg
 	return nil

@@ -5,6 +5,8 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/kazukgw/takobot/cmd/takobot/log"
+
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
 )
 
@@ -15,6 +17,7 @@ type MsgWithPattern struct {
 }
 
 func (a *MsgWithPattern) Do(ctx coa.Context) error {
+	log.Action("msg with pattern ==>")
 	msgs := make([]string, 0)
 	for re, ms := range a.Patterns {
 		if re.Match([]byte(a.Source)) {

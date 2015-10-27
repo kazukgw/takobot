@@ -1,12 +1,14 @@
 package msghandler
 
 import (
+	"reflect"
 	"regexp"
 
 	ags "github.com/kazukgw/takobot/cmd/takobot/actiongroups"
 	act "github.com/kazukgw/takobot/cmd/takobot/actions"
 	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
 	"github.com/kazukgw/takobot/cmd/takobot/db"
+	"github.com/kazukgw/takobot/cmd/takobot/log"
 	"github.com/kazukgw/takobot/cmd/takobot/msg"
 
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
@@ -35,10 +37,13 @@ func (ag *Routing) Do(ctx coa.Context) error {
 	msg := ag.GetMsg()
 	for ptn, agSource := range commandPatterns {
 		if ptn.Match([]byte(msg.Text)) {
+			log.ActionGRP(reflect.TypeOf(agSouce), " ==>")
 			newMctx := ctxs.NewMsgContext(agSource, msg, mctx.RTM, mctx.Client)
 			return newMctx.Exec()
 		}
 	}
+
+	log.ActionGRP("send registered msg ==>")
 	newMctx := ctxs.NewMsgContext(ags.SendRegisteredMsg{}, msg, mctx.RTM, mctx.Client)
 	return newMctx.Exec()
 }

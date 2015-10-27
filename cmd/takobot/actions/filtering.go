@@ -5,6 +5,7 @@ import (
 	"math/rand"
 
 	eh "github.com/kazukgw/takobot/cmd/takobot/errorhandler"
+	"github.com/kazukgw/takobot/cmd/takobot/log"
 	"github.com/kazukgw/takobot/cmd/takobot/msg"
 	"github.com/kazukgw/takobot/cmd/takobot/store"
 
@@ -12,117 +13,111 @@ import (
 )
 
 type Filtering struct {
-	Func          func(*msg.Msg) bool
-	WhiteChannel  []string
-	BlackChannel  []string
-	FromWhiteUser []string
-	FromBlackUser []string
-	ToWhiteUser   []string
-	ToBlackUser   []string
-	Ratio         float64
+	Func           func(*msg.Msg) bool
+	PermitChannel  []string
+	DenyChannel    []string
+	FromPermitUser []string
+	FromDenyUser   []string
+	ToPermitUser   []string
+	ToDenyUser     []string
+	Ratio          float64
 }
 
 func (a *Filtering) Do(ctx coa.Context) error {
+	log.Action("filtering ==>")
 	if ag, ok := ctx.ActionGroup().(HasMsg); ok {
 		m := ag.GetMsg()
 		chanName := store.ChanByID(m.Channel).Name
 		userName := store.UserByID(m.User).Name
 		toUser := m.ToUser
-		fmt.Printf(
-			"Filter:%#v \nchanName: %#v\n userName: %#v\n toUser: %#v\n",
-			a,
-			chanName,
-			userName,
-			toUser,
-		)
-		if len(a.WhiteChannel) > 0 {
-			for _, c := range a.WhiteChannel {
+		if len(a.PermitChannel) > 0 {
+			for _, c := range a.PermitChannel {
 				if c == chanName {
-					fmt.Println("filtering: white channel ok")
+					log.Info("filtering: permit channel ok")
 					return nil
 				}
 			}
-			fmt.Println("filtering: white channel bad")
+			log.Info("filtering: permit channel bad")
 			return eh.ErrNonError
 		}
 
-		if len(a.BlackChannel) > 0 {
-			for _, c := range a.BlackChannel {
+		if len(a.DenyChannel) > 0 {
+			for _, c := range a.DenyChannel {
 				if c == chanName {
-					fmt.Println("filtering: black channel bad")
+					log.Info("filtering: deny channel bad")
 					return eh.ErrNonError
 				}
 			}
-			fmt.Println("filtering: black channel ok")
+			log.Info("filtering: deny channel ok")
 			return nil
 		}
 
-		if len(a.FromWhiteUser) > 0 {
-			for _, u := range a.FromWhiteUser {
+		if len(a.FromPermitUser) > 0 {
+			for _, u := range a.FromPermitUser {
 				if u == userName {
-					fmt.Println("filtering: from white user ok")
+					log.Info("filtering: from permit user ok")
 					return nil
 				}
 			}
-			fmt.Println("filtering: from white user bad")
+			log.Info("filtering: from permit user bad")
 			return eh.ErrNonError
 		}
 
-		if len(a.FromBlackUser) > 0 {
-			for _, u := range a.FromBlackUser {
+		if len(a.FromDenyUser) > 0 {
+			for _, u := range a.FromDenyUser {
 				if u == userName {
-					fmt.Println("filtering: from black user bad")
+					log.Info("filtering: from deny user bad")
 					return eh.ErrNonError
 				}
 			}
-			fmt.Println("filtering: from black user ok")
+			log.Info("filtering: from deny user ok")
 			return nil
 		}
 
-		if len(a.ToWhiteUser) > 0 {
+		if len(a.ToPermitUser) > 0 {
 			if toUser == nil {
-				fmt.Println("filtering: to white user bad")
+				log.Info("filtering: to permit user bad")
 				return eh.ErrNonError
 			}
-			for _, u := range a.ToWhiteUser {
+			for _, u := range a.ToPermitUser {
 				if u == toUser.Name {
-					fmt.Println("filtering: to white user ok")
+					log.Info("filtering: to permit user ok")
 					return nil
 				}
 			}
-			fmt.Println("filtering: to white user bad")
+			log.Info("filtering: to permit user bad")
 			return eh.ErrNonError
 		}
 
-		if len(a.ToBlackUser) > 0 {
+		if len(a.ToDenyUser) > 0 {
 			if toUser == nil {
-				fmt.Println("filtering: to white user bad")
+				log.Info("filtering: to permit user bad")
 				return eh.ErrNonError
 			}
-			for _, u := range a.ToBlackUser {
+			for _, u := range a.ToDenyUser {
 				if u == toUser.Name {
-					fmt.Println("filtering: to black user bad")
+					log.Info("filtering: to deny user bad")
 					return eh.ErrNonError
 				}
 			}
-			fmt.Println("filtering: to black user ok")
+			log.Info("filtering: to deny user ok")
 			return nil
 		}
 
 		if a.Ratio > 0.0 {
 			if rand.Float64() <= a.Ratio {
-				fmt.Println("filtering: ratio ok")
+				log.Info("filtering: ratio ok")
 				return nil
 			}
-			fmt.Println("filtering: ratio bad")
+			log.Info("filtering: ratio bad")
 			return eh.ErrNonError
 		}
 
 		if a.Func != nil && !a.Func(m) {
-			fmt.Println("filtering: func bad")
+			log.Info("filtering: func bad")
 			return eh.ErrNonError
 		}
 	}
-	fmt.Println("filtering: ok")
+	log.Info("filtering: ok")
 	return nil
 }
