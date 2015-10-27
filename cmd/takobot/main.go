@@ -8,7 +8,11 @@ import (
 )
 
 func main() {
-	fmt.Println("hogehoge")
+	fmt.Println("")
+	fmt.Println("=================================")
+	fmt.Println("============ TAKOBOT ============")
+	fmt.Println("=================================")
+	fmt.Println("")
 	ctxs.NewContext(&db.Migration{}).Exec()
 	go ServeStats()
 	HandleEvent()

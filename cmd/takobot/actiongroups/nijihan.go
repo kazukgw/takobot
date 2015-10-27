@@ -1,10 +1,9 @@
 package actiongroups
 
 import (
-	"fmt"
-
 	act "github.com/kazukgw/takobot/cmd/takobot/actions"
 	"github.com/kazukgw/takobot/cmd/takobot/db"
+	eh "github.com/kazukgw/takobot/cmd/takobot/errorhandler"
 
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
 )
@@ -14,6 +13,8 @@ type Nijihan struct {
 	coa.DoSelf
 	act.GetRTMAndSendMsg
 	db.CloseDB
+
+	eh.DefaultErrorHandler
 }
 
 func (ag Nijihan) Schedule() string {
@@ -24,9 +25,4 @@ func (ag *Nijihan) Do(ctx coa.Context) error {
 	ag.SendMsg.Msg = "ニジ・ハーン"
 	ag.SendMsg.Channel = "general"
 	return nil
-}
-
-func (ag *Nijihan) HandleError(ctx coa.Context, err error) error {
-	fmt.Println(err.Error())
-	return err
 }

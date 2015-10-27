@@ -25,3 +25,9 @@ func Info(v ...interface{}) {
 	args = append(args, v...)
 	pp.Println(args)
 }
+
+func Error(v ...interface{}) {
+	args := []interface{}{" [ERROR] "}
+	args = append(args, v...)
+	pp.Println(args)
+}

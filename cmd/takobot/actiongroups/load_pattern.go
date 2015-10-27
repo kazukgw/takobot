@@ -15,7 +15,7 @@ type LoadPattern struct {
 	coa.DoSelf
 
 	models.Patterns
-	eh.DoNothing
+	eh.DefaultErrorHandler
 }
 
 func (ag *LoadPattern) Do(ctx coa.Context) error {

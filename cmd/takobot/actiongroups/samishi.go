@@ -1,11 +1,11 @@
 package actiongroups
 
 import (
-	"fmt"
 	"math/rand"
 
 	act "github.com/kazukgw/takobot/cmd/takobot/actions"
 	"github.com/kazukgw/takobot/cmd/takobot/db"
+	eh "github.com/kazukgw/takobot/cmd/takobot/errorhandler"
 	"github.com/kazukgw/takobot/cmd/takobot/store"
 
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/jinzhu/gorm"
@@ -18,6 +18,8 @@ type Samishi struct {
 	coa.DoSelf
 	act.GetRTMAndSendMsg
 	db.CloseDB
+
+	eh.DefaultErrorHandler
 }
 
 func (ag Samishi) Schedule() string {
@@ -39,9 +41,4 @@ func (ag *Samishi) Do(ctx coa.Context) error {
 		ag.SendMsg.Channel = "general"
 	}
 	return nil
-}
-
-func (ag *Samishi) HandleError(ctx coa.Context, err error) error {
-	fmt.Println(err.Error())
-	return err
 }

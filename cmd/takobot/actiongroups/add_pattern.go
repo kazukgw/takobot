@@ -23,6 +23,8 @@ type AddPattern struct {
 	coa.DoSelf
 	act.GetRTMAndSendMsg
 	db.CloseDB
+
+	eh.DefaultErrorHandler
 }
 
 var addPatternSplitArgs = regexp.MustCompile(`pattern[ ]+add:(.*)`)
@@ -87,9 +89,8 @@ func (ag *AddPattern) HandleError(ctx coa.Context, err error) error {
 	if err == eh.ErrNonError {
 		return err
 	}
-
+	err = (&eh.DefaultErrorHandler{}).HandleError(ctx, err)
 	mctx := ctx.(*ctxs.MsgContext)
-	fmt.Println(err.Error())
 	chanName := mctx.Msg.Channel
 	rtm := mctx.RTM
 	rtm.SendMessage(rtm.NewOutgoingMessage("Failed to add pattern.", store.ChanByName(chanName).ID))

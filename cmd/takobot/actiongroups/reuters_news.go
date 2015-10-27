@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	act "github.com/kazukgw/takobot/cmd/takobot/actions"
+	eh "github.com/kazukgw/takobot/cmd/takobot/errorhandler"
 
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/kazukgw/coa"
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/nlopes/slack"
@@ -14,6 +15,8 @@ type ReutersNews struct {
 	coa.DoSelf
 	act.GetClient
 	act.SendAttachments
+
+	eh.DefaultErrorHandler
 }
 
 func (ag ReutersNews) Schedule() string {
@@ -39,9 +42,4 @@ func (ag *ReutersNews) Do(ctx coa.Context) error {
 		Text:      text,
 	}
 	return nil
-}
-
-func (ag *ReutersNews) HandleError(ctx coa.Context, err error) error {
-	fmt.Println(err.Error())
-	return err
 }
