@@ -6,6 +6,7 @@ import (
 
 	ags "github.com/kazukgw/takobot/cmd/takobot/actiongroups"
 	ctxs "github.com/kazukgw/takobot/cmd/takobot/contexts"
+	"github.com/kazukgw/takobot/cmd/takobot/log"
 
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/github.com/nlopes/slack"
 	"github.com/kazukgw/takobot/Godeps/_workspace/src/gopkg.in/robfig/cron.v2"
@@ -29,11 +30,7 @@ func Init(rtm *slack.RTM, client *slack.Client) {
 		if s != "" {
 			_agSource := agSource
 			c.AddFunc(s, func() {
-				fmt.Printf(
-					"do the cron action group: %#v s: %#v",
-					reflect.TypeOf(_agSource).Name(),
-					s,
-				)
+				log.ActionGRP(reflect.TypeOf(_agSource).Name)
 				ctxs.NewMsgContext(_agSource, nil, rtm, client).Exec()
 			})
 		}
