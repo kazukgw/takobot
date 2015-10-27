@@ -28,6 +28,10 @@
 			"Rev": "93e9980741c9e593411b94e07d5bad8cfb4809db"
 		},
 		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Rev": "40e4aedc8fabf8c23e040057540867186712faa5"
+		},
+		{
 			"ImportPath": "github.com/nlopes/slack",
 			"Comment": "v0.0.1-57-gaaf5585",
 			"Rev": "aaf55856f05a90dac5b934d489d6c3d14e8602a6"
@@ -43,6 +47,11 @@
 		{
 			"ImportPath": "golang.org/x/net/websocket",
 			"Rev": "610bfeebc3e0173d0645f527575409994fb733e9"
+		},
+		{
+			"ImportPath": "gopkg.in/pp.v2",
+			"Comment": "v2.1.0",
+			"Rev": "fa6ef2628b80777cf9af03bff7ad351a12b774c4"
 		},
 		{
 			"ImportPath": "gopkg.in/robfig/cron.v2",

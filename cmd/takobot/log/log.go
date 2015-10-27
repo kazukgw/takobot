@@ -1,7 +1,7 @@
 package log
 
 import (
-	"gopkg.in/pp.v2"
+	"github.com/kazukgw/takobot/Godeps/_workspace/src/gopkg.in/pp.v2"
 )
 
 func init() {
