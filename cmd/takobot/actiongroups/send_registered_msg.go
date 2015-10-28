@@ -15,7 +15,6 @@ type SendRegisteredMsg struct {
 	act.Filtering
 	coa.DoSelf
 	act.SendMsgWithPattern
-	db.CloseDB
 
 	eh.WakaranErrHandler
 }

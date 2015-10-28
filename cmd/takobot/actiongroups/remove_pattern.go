@@ -20,7 +20,6 @@ type RemovePattern struct {
 	act.Filtering
 	coa.DoSelf
 	act.GetRTMAndSendMsg
-	db.CloseDB
 }
 
 func (ag *RemovePattern) PreExec(ctx coa.Context) error {

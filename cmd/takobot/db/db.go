@@ -12,6 +12,16 @@ func DBURL() string {
 	return os.Getenv("DATABASE_URL")
 }
 
+var DB *gorm.DB
+
+func InitDB() {
+	db, err := gorm.Open("postgres", DBURL())
+	if err != nil {
+		panic(err.Error())
+	}
+	DB = &db
+}
+
 type NewDB struct {
 	db *gorm.DB
 }
@@ -21,23 +31,10 @@ type HasDB interface {
 }
 
 func (a *NewDB) Do(ctx coa.Context) error {
-	db, err := gorm.Open("postgres", DBURL())
-	if err != nil {
-		return err
-	}
-	a.db = &db
+	a.db = DB
 	return nil
 }
 
 func (a *NewDB) DB() *gorm.DB {
 	return a.db
-}
-
-type CloseDB struct {
-}
-
-func (a *CloseDB) Do(ctx coa.Context) error {
-	ag := ctx.ActionGroup()
-	ag.(HasDB).DB().Close()
-	return nil
 }

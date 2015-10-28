@@ -29,7 +29,6 @@ type Routing struct {
 	db.NewDB
 	act.GetAndSaveMsg
 	coa.DoSelf
-	db.CloseDB
 }
 
 func (ag *Routing) Do(ctx coa.Context) error {

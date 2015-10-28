@@ -22,7 +22,6 @@ type AddPattern struct {
 	act.Filtering
 	coa.DoSelf
 	act.GetRTMAndSendMsg
-	db.CloseDB
 
 	eh.DefaultErrorHandler
 }

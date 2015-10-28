@@ -17,7 +17,6 @@ type Samishi struct {
 	act.MsgHistory
 	coa.DoSelf
 	act.GetRTMAndSendMsg
-	db.CloseDB
 
 	eh.DefaultErrorHandler
 }

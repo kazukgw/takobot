@@ -22,7 +22,6 @@ type ShowPattern struct {
 	act.Filtering
 	coa.DoSelf
 	act.GetRTMAndSendMsg
-	db.CloseDB
 }
 
 func (ag *ShowPattern) PreExec(ctx coa.Context) error {

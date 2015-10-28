@@ -9,10 +9,14 @@ import (
 
 func main() {
 	fmt.Println("")
+	fmt.Println("")
 	fmt.Println("=================================")
 	fmt.Println("============ TAKOBOT ============")
 	fmt.Println("=================================")
 	fmt.Println("")
+	fmt.Println("")
+
+	db.InitDB()
 	ctxs.NewContext(&db.Migration{}).Exec()
 	go ServeStats()
 	HandleEvent()

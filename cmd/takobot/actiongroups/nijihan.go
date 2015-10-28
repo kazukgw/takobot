@@ -12,7 +12,6 @@ type Nijihan struct {
 	db.NewDB
 	coa.DoSelf
 	act.GetRTMAndSendMsg
-	db.CloseDB
 
 	eh.DefaultErrorHandler
 }
